@@ -16,11 +16,11 @@
     /* steps / a-gpios / b-gpios は roBa.dtsi 側で定義済みの想定 */
 };
 
-/* ← ここは root 直下に置く（&left_encoder の外側） */
- / {
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;     /* 束ねに left_encoder を登録 */
-        triggers-per-rotation = <15>;  /* デテント数に合わせる（例: 15） */
-    };
-};
+/* ★ ここで roBa.dtsi の sensors を上書きする */
+&sensors {
+    /* 左のエンコーダだけを束ねる */
+    sensors = <&left_encoder>;
+
+    /* 例: デテント数に合わせる。EC11なら 15 か 24 が扱いやすい */
+    triggers-per-rotation = <15>;
+}

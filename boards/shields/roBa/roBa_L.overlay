@@ -10,17 +10,14 @@
                 <&gpio0 9   GPIO_ACTIVE_HIGH>;
 };
 
-/* エンコーダ実体の有効化（roBa.dtsi 側に定義がある前提） */
+/* 左エンコーダを有効化（← このブロックは ; で終わる） */
 &left_encoder {
     status = "okay";
-    /* steps / a-gpios / b-gpios は roBa.dtsi 側で定義済みの想定 */
 };
 
-/* ★ ここで roBa.dtsi の sensors を上書きする */
+/* ZMKのセンサー束ねを“左だけ”に上書き（← これも ; で終わる） */
 &sensors {
-    /* 左のエンコーダだけを束ねる */
     sensors = <&left_encoder>;
-
-    /* 例: デテント数に合わせる。EC11なら 15 か 24 が扱いやすい */
+    /* デテント数に合わせる。EC11なら 15 か 24 が無難 */
     triggers-per-rotation = <15>;
-}
+};

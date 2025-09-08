@@ -37,7 +37,7 @@
 
     /* Y反転 + 2倍 */
     input-processors =
-        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+        //<&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
         <&zip_xy_scaler 2 1>;
   };
 };

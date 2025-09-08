@@ -1,16 +1,26 @@
 #include "roBa.dtsi"
 
+/* 既存のスキャンピン定義（そのままでOK） */
 &kscan0 {
-        col-gpios
-            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
-            , <&gpio0 10 GPIO_ACTIVE_HIGH>
-            , <&gpio0 9 GPIO_ACTIVE_HIGH>
-            ;
+    col-gpios = <&xiao_d 10 GPIO_ACTIVE_HIGH>,
+                <&xiao_d 9  GPIO_ACTIVE_HIGH>,
+                <&xiao_d 8  GPIO_ACTIVE_HIGH>,
+                <&xiao_d 7  GPIO_ACTIVE_HIGH>,
+                <&gpio0 10  GPIO_ACTIVE_HIGH>,
+                <&gpio0 9   GPIO_ACTIVE_HIGH>;
 };
 
+/* エンコーダ実体の有効化（roBa.dtsi 側に定義がある前提） */
 &left_encoder {
     status = "okay";
+    /* steps / a-gpios / b-gpios は roBa.dtsi 側で定義済みの想定 */
+};
+
+/* ← ここは root 直下に置く（&left_encoder の外側） */
+ / {
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;     /* 束ねに left_encoder を登録 */
+        triggers-per-rotation = <15>;  /* デテント数に合わせる（例: 15） */
+    };
 };

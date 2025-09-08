@@ -31,23 +31,15 @@
 };
 
 / {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
+  trackball_listener {
+    compatible = "zmk,input-listener";
+    device = <&trackball>;
 
-        // 例: 垂直だけ逆なら
-
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;
-
-        // 例: 水平も逆なら
-
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
-
-        // 例: 移動量を2倍
-
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-                           <&zip_xy_scaler 2 1>;
-    };
+    /* Y反転 + 2倍 */
+    input-processors =
+        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+        <&zip_xy_scaler 2 1>;
+  };
 };
 
 / {

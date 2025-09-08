@@ -112,7 +112,7 @@
 &mt LCTRL LANG_ZENKAKUHANKAKU  &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_MUHENKAN  &lt 4 SPACE  &lt_to_layer_0 3 INT_HENKAN      &lt 2 BACKSPACE  &lt 1 ENTER                             &kp BACKSPACE
             >;
 
-            sensor-bindings = <&encoder_msc_down_up>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         FUNCTION {
